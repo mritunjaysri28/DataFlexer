@@ -1,18 +1,18 @@
-# URL="https://dlcdn.apache.org/spark/spark-3.5.0/spark-3.5.0-bin-hadoop3.tgz"
 URL="https://dlcdn.apache.org/spark/spark-3.3.4/spark-3.3.4-bin-hadoop2.tgz"
 SPARK_VERSION=$(echo $URL | grep -oP '[^/]+(?=$)')
-
 
 ENV_NAME=$1
 PYTHON_VERSION=$2
 
 if [ -z $ENV_NAME ]
 then
-    ENV_NAME='synthegrate_env'
+    ENV_NAME='dataflexer_env'
 fi
+
 if [ -z $PYTHON_VERSION ]
 then
-    PYTHON_VERSION=$(python --version | grep -o [0-9,.]*)
+    # PYTHON_VERSION=$(python --version | grep -o [0-9,.]*)
+    PYTHON_VERSION=3.11.5
 fi
 
 HADOOP_PATH=$ENV_NAME/hadoop/bin
@@ -22,10 +22,11 @@ echo -e "***************** installation Start *****************"
 echo -e "env_name=${ENV_NAME} \t python_version=${PYTHON_VERSION} \t SPARK_VERSION=${SPARK_VERSION}"
 
 # # conda create -p $ENV_NAME python=$PYTHON_VERSION
-# # conda env remove --name $ENV_NAME
+# # conda env remove --p ./$ENV_NAME
 
 eval "$(conda shell.bash hook)"
-conda create -p $ENV_NAME python=$(echo $PYTHON_VERSION)
+conda create -p ./$ENV_NAME python=$(echo $PYTHON_VERSION)
+
 if [[ -z $(conda env list | grep $ENV_NAME) && -z $(ls | grep $ENV_NAME) ]]
 then
     echo '**** Failed to create enviornment ****'
@@ -34,6 +35,7 @@ fi
 echo -e "#################### ${ENV_NAME} enviornment created ####################"
 
 conda activate ./$ENV_NAME/
+
 if [[ -z "$(echo $CONDA_PREFIX | grep $ENV_NAME)" ]]; then
     echo "Unable to activate conda environment activated ${CONDA_PREFIX}"
     exit
@@ -74,13 +76,3 @@ echo -e "***************** installation Complete *****************"
 
 
 echo "Activate conda: conda activate ./${ENV_NAME}"
-
-
-
-
-
-
-
-
-# PYSPARK_PYTHON=python
-# HADOOP_HOME=D:\MyCode\Project\PyShark\synthegrate_env\spark-3.5.0-bin-hadoop3

@@ -1,7 +1,15 @@
-FolderStructure/
+# DataFlexer
+
+DataFlexer a versatile data processing solution designed to empower users in managing diverse data formats effortlessly. With its core functionality, this tool serves as a dynamic data orchestrator, allowing users to configure JSON-based specifications for seamless extraction, transformation, and loading operations across a multitude of file formats.
+
+It will offers an innovative approach to data handling, granting users the flexibility to tailor data operations to their specific needs. Whether dealing with CSV, JSON, XML, or other formats, our platform's user-friendly interface and configurable JSON settings streamline the entire process, enabling users to effortlessly extract, transform, and load data.
+
+
+```
+DataFlexer/
 │
 ├── src/
-│   ├── main.py                 # Main entry point of your PySpark application
+│   ├── main.py                 # Main entry point for application
 │   ├── etl/                    # Directory for ETL-related code
 │   │   ├── data_loader.py      # Code for loading data
 │   │   ├── data_processor.py   # Code for data processing/transformation
@@ -21,24 +29,13 @@ FolderStructure/
 │   └── spark_config.py         # SparkSession configuration settings
 │
 ├── requirements.txt            # Python dependencies file
-└── README.md                   # Project documentation and instructions
-Explanation of the directory structure:
-
-src/: This directory contains the main codebase of your PySpark project.
-
-main.py: The main entry point of your PySpark application.
-etl/: Houses modules for Extract, Transform, Load (ETL) processes.
-utils/: Contains utility functions used across the project.
-tests/: Holds unit tests for various modules/functions.
-data/: Stores input and output data directories.
-
-config/: Contains configurations for SparkSession or other project-wide settings.
-
-requirements.txt: Lists Python dependencies required for the project.
-
-README.md: Documentation providing information about the project, setup instructions, and any other relevant details.
-
+└── README.md                   # Project documentation 
+```
 
 ## Installation
 
 ```sh install.sh```
+
+## Run application
+
+```spark-submit src/main.py```
